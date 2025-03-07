@@ -3,6 +3,7 @@ import { addTrainer, getTrainerByTelegramId, getSlotsByTrainerId, getFreeSlotsBy
 import type { Trainer, Slot } from './db.ts';
 import { generateTrainerQR } from './qr.ts';
 import { generateNextDates, generateHours, generateMinutes, durationToMinutes, isSlotOverlapping } from './timeUtils.ts';
+import { BOT_TOKEN } from './tokens.ts';
 
 interface CustomContext extends Context {
   from: { id: number, is_bot: boolean, first_name: string };
@@ -23,10 +24,9 @@ const Patterns = {
   Book: 'book_(\\d+)',
 }
 
-const botToken = process.env.TALON_BOT_TOKEN;
-const myTelegramId = process.env.MY_TELEGRAM_ID;
-if (!botToken || !myTelegramId) {
-  throw Error('Не удалось получить токен или id');
+const botToken = process.env.TALON_BOT_TOKEN || BOT_TOKEN;
+if (!botToken) {
+  throw Error('Не удалось получить токен');
 }
 
 const bot = new Telegraf<CustomContext>(botToken);
