@@ -1,0 +1,17 @@
+export const Patterns = {
+    Date: 'date_(.+)',
+    Hour: 'hour_(.+)_(\\d{2}):00',
+    StartTime: 'start_(.+)_(\\d{2}:\\d{2})',
+    DurationHours: 'dur_h_(.+)_(\\d{2}:\\d{2})_(\\d{2})',
+    Duration: 'dur_(.+)_(\\d{2}:\\d{2})_(\\d{2}:\\d{2})',
+    Book: 'book_(\\d+)',
+    Cancel: 'cancel_(\\d+)',
+    Edit: 'edit_(\\d+)',
+    Delete: 'delete_(\\d+)',
+    EditDate: 'edit_date_(\\d+)_(.+)',
+    EditHour: 'edit_hour_(\\d+)_(.+)_(\\d{2}):00',
+    EditStart: 'edit_start_(\\d+)_(.+)_(\\d{2}:\\d{2})',
+    EditDurHours: 'edit_dur_h_(\\d+)_(.+)_(\\d{2}:\\d{2})_(\\d{2})',
+    EditDur: 'edit_dur_(\\d+)_(.+)_(\\d{2}:\\d{2})_(\\d{2}:\\d{2})',
+    SetTrainer: 'set_trainer_(\\d+)',
+  } as const;

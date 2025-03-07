@@ -1,11 +1,13 @@
 import Database from 'better-sqlite3';
 
 const db = new Database('slots.db');
+export { db }; // Экспорт для выборки тренеров
 
 export interface Trainer {
   id: number;
   name: string;
   telegramId: number;
+  isAdmin: boolean;
 }
 
 export interface Slot {
@@ -22,7 +24,8 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS trainers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    telegramId INTEGER UNIQUE
+    telegramId INTEGER UNIQUE,
+    isAdmin BOOLEAN DEFAULT 0
   );
   CREATE TABLE IF NOT EXISTS slots (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,5 +38,3 @@ db.exec(`
     FOREIGN KEY (trainerId) REFERENCES trainers(id)
   );
 `);
-
-export default db;
